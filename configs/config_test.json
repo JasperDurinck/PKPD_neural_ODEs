@@ -1,0 +1,80 @@
+{
+    "model_name": "test1",
+    "save": "./results/model_ckpt/",
+    "save_best": "./results/model_ckpt/",
+    "seed": 42,
+    "ckpt_path": "./results/model_ckpt/test1_model.ckpt",
+    "best_ckpt_path": "./results/model_ckpt/test1_model_best.ckpt",
+    "best_rmse": 7.004757404327393,
+    "best_epochs": 3,
+    "current_epoch": 4,
+    "lr": 0.001,
+    "l2": 0.1,
+    "epochs": 10,
+    "tol": 0.0001,
+    "continue_train": false,
+    "n_labels": 2,
+    "features": 8,
+    "encoder_hidden_dim": 256,
+    "latent_dim": 16,
+    "output_dim": 2,
+    "ode_func_hidden_dim": 16,
+    "input_dim": 8,
+    "DSFQ_SETTINGS": {
+        "1": 48,
+        "2": 96,
+        "3": 144
+    },
+    "AUGMENTATION_SETTINGS": {
+        "interval": 48,
+        "ranges": [
+            2,
+            4,
+            6
+        ],
+        "offset_values": [
+            0.1,
+            0.2,
+            0.3
+        ]
+    },
+    "DATA_DIR": "data/",
+    "GET_DATA": "data/sim_data.csv",
+    "STORE_DATA": "data/data.csv",
+    "MAX_CYCLES": 100,
+    "PTNM_MAX_CHAR": 5,
+    "MINIMAL_START_TIME": 0,
+    "COLUMNS_TO_SELECT": [
+        "STUD",
+        "DSFQ",
+        "PTNM",
+        "CYCL",
+        "AMT",
+        "TIME",
+        "TFDS",
+        "DV1",
+        "DV2",
+        "age",
+        "weight"
+    ],
+    "COLUMNS_TO_RENAME": {
+        "DV1": "PK_timeCourse_1",
+        "DV2": "PK_timeCourse_2"
+    },
+    "label_cols": [
+        "PK_timeCourse_1",
+        "PK_timeCourse_2"
+    ],
+    "feature_cols": [
+        "TFDS",
+        "TIME",
+        "CYCL",
+        "AMT",
+        "PK1_round1",
+        "PK2_round1"
+    ],
+    "covariates_cols": [
+        "age",
+        "weight"
+    ]
+}

@@ -1,0 +1,16 @@
+
+        Epoch 0000 | Training loss 12.564463 | Training R2 0.824909 | Validation loss 11.957021 | Validation R2 0.805401
+        Best loss 11.957021 | Best epoch 0000
+        
+
+        Epoch 0001 | Training loss 9.624640 | Training R2 0.897259 | Validation loss 9.033706 | Validation R2 0.888922
+        Best loss 9.033706 | Best epoch 0001
+        
+
+        Epoch 0002 | Training loss 7.701294 | Training R2 0.934219 | Validation loss 7.411577 | Validation R2 0.925232
+        Best loss 7.411577 | Best epoch 0002
+        
+
+        Epoch 0003 | Training loss 7.150396 | Training R2 0.943293 | Validation loss 7.004757 | Validation R2 0.933215
+        Best loss 7.004757 | Best epoch 0003
+        
