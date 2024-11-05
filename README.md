@@ -18,7 +18,7 @@ PK/PD Simulation: Uses simulated PK/PD data to demonstrate practical application
 
 ![im2](img/img1.png)
 
-### Litrature: 
+### Literature: 
 
 Lu, J., Deng, K., Zhang, X., Liu, G., & Guan, Y. (2021). Neural-ODE for pharmacokinetics modeling and its advantage to alternative machine learning models in predicting new dosing regimens. iScience, 24(7), 102804-. https://doi.org/10.1016/j.isci.2021.102804
 
