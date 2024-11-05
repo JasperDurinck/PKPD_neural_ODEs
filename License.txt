@@ -31,6 +31,6 @@ This project includes significant adaptations from the original work by James Lu
 - Refactor code for general-purpose PK/PD neural ODE modeling
 - Improve modularity and extend functionality
 - Add multi-label support
-- Implement additional PK/PD population simulation exampple 
+- Implement additional PK/PD population simulation example 
 
 The original repository can be found at https://github.com/jameslu01/Neural_PK.
