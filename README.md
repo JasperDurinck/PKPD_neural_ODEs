@@ -1,5 +1,5 @@
 # Neural ODEs for Time Series Prediction
-This repository provides a simple and modular implementation of neural ordinary differential equations (ODEs) for time series prediction. It is based on the work by James et al. (2021) and extends their approach with additional features, refactoring and refinements for simple use and learning more about the topic.
+This repository provides a simple and modular implementation of neural ordinary differential equations (ODEs) for time series prediction. It is based on the work by James et al. (2021) (see https://github.com/jameslu01/Neural_PK) and extends their approach with additional features, refactoring and refinements for simple use and learning more about the topic.
 
 # Background
 Neural ODEs offer a powerful framework for modeling time-dependent data by combining neural networks with differential equations. They are particularly useful for handling irregularly sampled data and capturing complex temporal dynamics. In this example, neural ODEs are applied to simulated pharmacokinetic/pharmacodynamic (PK/PD) data, often used in modeling drug concentration and effect over time in a population.
