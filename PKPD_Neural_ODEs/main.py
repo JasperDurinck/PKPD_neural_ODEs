@@ -12,13 +12,15 @@ from run_predict import predict as _predict
 from model import *
 
 class PKPD_neural_ODE:
-    def __init__(self, load_config=None, save_config='config'):
+    def __init__(self, load_config=None, save_config='config', base_dir='./'):
         self.save_config = save_config
+        self.base_dir=base_dir
+        load_config = f"{base_dir}{load_config}"
         if load_config is not None:
             self.save_config = load_config
-        self.args = Args(load_config,save_config)
-        utils.makedirs("logs/")
-        self.log_path = "logs/" + f"model_{self.args.model_name}.log"
+        self.args = Args(load_config, save_config, self.base_dir)
+        utils.makedirs(f"{base_dir}/logs/")
+        self.log_path = f"{base_dir}/logs/model_{self.args.model_name}.log"
         self.input_cmd = sys.argv
         self.input_cmd = " ".join(self.input_cmd)
         self.logger = utils.get_logger(logpath=self.log_path, filepath=os.path.abspath(__file__))
@@ -28,10 +30,11 @@ class PKPD_neural_ODE:
         print('device', self.device)
 
     def _config(self):
-        self.args = Args()
+        self.args = Args(base_dir=self.base_dir)
 
     def _load_data(self, phase="train"):
         
+        print(self.args.DATA_DIR)
         self.data_obj = parse_data(
             self.device, 
             phase=phase, 
@@ -64,7 +67,7 @@ class PKPD_neural_ODE:
     
     def _process_data(self):
         process_data(self.args)
-        split_dataset(self.args.STORE_DATA, self.args, test_size=0.2, seed=42, output_dir="./data") 
+        split_dataset(self.args.STORE_DATA, self.args, test_size=0.2, seed=42, output_dir=f"{self.base_dir}/data") 
 
     def train_model(self):
 
@@ -86,11 +89,12 @@ class PKPD_neural_ODE:
 
 
 class Args:
-    def __init__(self, load_config=None, save_config='config.json'):
+    def __init__(self, load_config=None, save_config='config.json', base_dir='./'):
         # Default settings
+        self.base_dir=base_dir
         self.model_name = 'test1'
-        self.save = './results/model_ckpt/'
-        self.save_best = './results/model_ckpt/'
+        self.save = f"{self.model_name}/results/model_ckpt/"
+        self.save_best = f"{self.model_name}/results/model_ckpt/"
         self.seed = 42
         self.ckpt_path = os.path.join(self.save, f"{self.model_name}_model.ckpt")
         self.best_ckpt_path = os.path.join(self.save, f"{self.model_name}_model_best.ckpt")
@@ -123,7 +127,7 @@ class Args:
         }
 
         # Process data settings
-        self.DATA_DIR = 'data/'
+        self.DATA_DIR = f"{base_dir}/data/"
         self.GET_DATA = f"{self.DATA_DIR}sim_data.csv"
         self.STORE_DATA = f"{self.DATA_DIR}data.csv"
         self.MAX_CYCLES = 100
@@ -148,21 +152,30 @@ class Args:
             json.dump(self.__dict__, f, indent=4)
 
     def load_from_json(self, file_path):
-        """Load configuration from a JSON file."""
+        """Load configuration from a JSON file and resolve relative paths."""
         with open(file_path, 'r') as f:
             data = json.load(f)
-            self.__dict__.update(data)
+
+        # Replace paths starting with "./" using self.base_dir
+        for key, value in data.items():
+            if isinstance(value, str) and value.startswith("./"):
+                data[key] = os.path.join(self.base_dir, value[2:])  # remove "./" and join
+
+        self.__dict__.update(data)
 
 
 if __name__ == '__main__':
 
-    PKPD_NODEs = PKPD_neural_ODE(load_config='configs/config_test.json')
+    PKPD_NODEs = PKPD_neural_ODE(
+        load_config='configs/config_test.json', 
+        base_dir='C:/Users/PC/Documents/neural_ode/PKPD_Neural_ODEs/' #Set your own base_dir
+        )
+    
     #PKPD_NODEs._process_data()
     PKPD_NODEs._load_data()
     PKPD_NODEs._initilize_model()
     #PKPD_NODEs.train_model()
     PKPD_NODEs.predict()
-
 
 
 

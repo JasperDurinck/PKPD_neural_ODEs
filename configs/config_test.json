@@ -38,9 +38,9 @@
             0.3
         ]
     },
-    "DATA_DIR": "data/",
-    "GET_DATA": "data/sim_data.csv",
-    "STORE_DATA": "data/data.csv",
+    "DATA_DIR": "./data/",
+    "GET_DATA": "./data/sim_data.csv",
+    "STORE_DATA": "./data/data.csv",
     "MAX_CYCLES": 100,
     "PTNM_MAX_CHAR": 5,
     "MINIMAL_START_TIME": 0,
